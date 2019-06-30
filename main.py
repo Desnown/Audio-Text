@@ -70,6 +70,9 @@ class Old(Screen):
     def olds(self):
         pass
 
+class New(Screen):
+    
+
     
 class Audio_Text(App):
     title = 'Audio Text'

@@ -1,4 +1,4 @@
-#: import MDFillRoundFlatButton kivymd.button.MDFillRoundFlatButton
+#:import MDFillRoundFlatButton kivymd.button.MDFillRoundFlatButton
 #:import MDTextFieldRect kivymd.textfields.MDTextFieldRect
 #:set cor_default [.776, .157, .157, 1]
 
@@ -39,7 +39,7 @@
             on_release: root.sair()
 
 
-<New@Screen>:
+<New>:
     BarStatus:
 
     BoxLayout:
@@ -51,6 +51,7 @@
             text:''
 
         MDFloatingActionButton:
+            id: microphone
             icon: 'microphone'
             pos_hint: {'right': .975}
             md_bg_color: app.theme_cls.primary_color
