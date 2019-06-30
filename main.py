@@ -10,7 +10,6 @@ Config.set('kivy', 'exit_on_escape', False)
 #KIVY
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.core.window import Window
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
@@ -28,9 +27,6 @@ from kivymd.button import MDFillRoundFlatButton
 
 #VARIABLES
 cor_default = [.776, .157, .157, 1]
-
-
-Window.clearcolor = [0,0,0, 1]
 
 
 class Main(ScreenManager):
