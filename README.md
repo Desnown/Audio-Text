@@ -2,6 +2,6 @@
 Application Audio Text.
 
 
-# Dependencias
+# Dependências
 kivy
 kivymd
