@@ -5,7 +5,7 @@ __date__ = '06/2019'
 
 #CONFIG
 from kivy.config import Config
-Config.set('graphics', 'borderless', True)
+# Config.set('graphics', 'borderless', True)
 Config.set('kivy', 'exit_on_escape', False)
 
 
@@ -49,6 +49,7 @@ class Init(Screen):
                     title_color=[1,1,1,1],
                     background='Imagens/pop.png')
 
+
         img = Image(source='Imagens/att.png')
         yes = MDFillRoundFlatButton(text='Sim', on_release=App.get_running_app().stop, _radius=dp(14))
         no = MDFillRoundFlatButton(text="Não", on_release=pop.dismiss, _radius=dp(14))
@@ -71,7 +72,21 @@ class Old(Screen):
         pass
 
 class New(Screen):
-    
+    def animation_up(self):
+        change_pos = Animation(pos_hint={'center_y': .505}, d=.3)
+        change_size = Animation(size=(dp(70), dp(70)), d=.3, t='linear', pos_hint= {'right': .995})
+
+        change_pos.start(self.ids.bx_record)
+        change_size.start(self.ids.microphone)
+
+
+    def animation_down(self):
+        change_pos = Animation(pos_hint={'center_y': .525}, d=.3)
+        change_size = Animation(size=(dp(50), dp(50)),t='in_quad',  d=.3, pos_hint={'right': .975})
+
+        change_pos.start(self.ids.bx_record)
+        change_size.start(self.ids.microphone)
+
 
     
 class Audio_Text(App):

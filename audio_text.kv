@@ -43,6 +43,7 @@
     BarStatus:
 
     BoxLayout:
+        id: bx_record
         orientation: 'vertical'
         pos_hint: {'center_y': .525}
 
@@ -54,10 +55,10 @@
             id: microphone
             icon: 'microphone'
             pos_hint: {'right': .975}
+            size: dp(50), dp(50)
             md_bg_color: app.theme_cls.primary_color
-            on_press: pass
-            on_release:
-                root.ids.lb_new.text = 'Tudo Ok'
+            on_press: root.animation_up()
+            on_release: root.animation_down()
 
         
 <BarStatus@ActionBar>:
