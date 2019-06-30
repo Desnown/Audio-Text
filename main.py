@@ -1,4 +1,6 @@
 #! -*- coding: utf-8 -*-
+__author__ = "Desnown"
+__date__ = '06/2019'
 
 
 #CONFIG
