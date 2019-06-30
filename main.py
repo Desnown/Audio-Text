@@ -5,7 +5,7 @@ __date__ = '06/2019'
 
 #CONFIG
 from kivy.config import Config
-# Config.set('graphics', 'borderless', True)
+Config.set('graphics', 'borderless', True)
 Config.set('kivy', 'exit_on_escape', False)
 
 
@@ -19,6 +19,8 @@ from kivy.uix.popup import Popup
 from kivy.uix.image import Image
 from kivy.animation import Animation
 from kivy.metrics import dp
+from kivy.core.window import Window
+
 
 #KIVYMD
 from kivymd.theming import ThemeManager
@@ -36,6 +38,18 @@ class Main(ScreenManager):
 
 
 class Init(Screen):
+    record = []
+    def on_pre_enter(self):
+        Window.bind(on_keyboard=self.option)
+
+    def option(self, window, key, *args):
+        print(key)
+        
+        if key == 27:
+            self.sair()
+
+        return True
+
     def sair(self, *args, **kw):
         box = BoxLayout(orientation="vertical", padding=10, spacing=10)
         botoes = BoxLayout(padding=(35,7), spacing=10)
@@ -51,8 +65,12 @@ class Init(Screen):
 
 
         img = Image(source='Imagens/att.png')
-        yes = MDFillRoundFlatButton(text='Sim', on_release=App.get_running_app().stop, _radius=dp(14))
-        no = MDFillRoundFlatButton(text="Não", on_release=pop.dismiss, _radius=dp(14))
+        yes = MDFillRoundFlatButton(text='Sim',
+                                    on_release=App.get_running_app().stop,
+                                    _radius=dp(14))
+
+        no = MDFillRoundFlatButton(text="Não", on_release=pop.dismiss,
+                                    _radius=dp(14))
 
         botoes.add_widget(yes)
         botoes.add_widget(no)
@@ -82,7 +100,7 @@ class New(Screen):
 
     def animation_down(self):
         change_pos = Animation(pos_hint={'center_y': .525}, d=.3)
-        change_size = Animation(size=(dp(50), dp(50)),t='in_quad',  d=.3, pos_hint={'right': .975})
+        change_size = Animation(size=(dp(50), dp(50)),t='linear',  d=.3, pos_hint={'right': .975})
 
         change_pos.start(self.ids.bx_record)
         change_size.start(self.ids.microphone)
@@ -100,6 +118,10 @@ class Audio_Text(App):
 
     def build(self):
         return Main()
+
+    # def on_stop(self):
+    #     window_size = Animation(size_hint=(1000,700), t='out_back', d=.4)
+    #     window_size.start(Init)
 
 
 Audio_Text().run()
