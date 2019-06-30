@@ -1,0 +1,72 @@
+#: import MDFillRoundFlatButton kivymd.button.MDFillRoundFlatButton
+#:import MDTextFieldRect kivymd.textfields.MDTextFieldRect
+#:set cor_default [.776, .157, .157, 1]
+
+<Main>:
+    Init:
+        name: 'init'
+    New:
+        name: 'new'
+
+<Init>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 25
+        pos_hint: {'top': 1.375}
+        
+
+        MDFillRoundFlatButton:
+            text: 'Nova Gravação'
+            pos_hint: {'center_x': .5}
+            size_hint_x: .50
+            _radius: dp(14)
+            on_release:
+                app.root.current = 'new'
+                app.root.transition.direction = 'left'
+
+        MDFillRoundFlatButton:
+            text: 'Gravações Anteriores'
+            pos_hint: {'center_x': .5}
+            size_hint_x: .50
+            _radius: dp(14)
+            on_release: pass
+
+        MDFillRoundFlatButton:
+            text: 'Sair'
+            pos_hint: {'center_x': .5}
+            size_hint_x: .50
+            _radius: dp(14)
+            on_release: root.sair()
+
+
+<New@Screen>:
+    BarStatus:
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': .525}
+
+        Label:
+            id: lb_new
+            text:''
+
+        MDFloatingActionButton:
+            icon: 'microphone'
+            pos_hint: {'right': .975}
+            md_bg_color: app.theme_cls.primary_color
+            on_press: pass
+            on_release:
+                root.ids.lb_new.text = 'Tudo Ok'
+
+        
+<BarStatus@ActionBar>:
+    pos_hint: {'top':1}
+    background_image: ''
+    background_color: cor_default
+    ActionView:
+        ActionPrevious:
+            app_icon: ''
+            title: 'Voltar'
+            on_release:
+                app.root.current = 'init'
+                app.root.transition.direction = 'right'
