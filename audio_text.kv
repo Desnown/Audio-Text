@@ -7,12 +7,20 @@
         name: 'init'
     New:
         name: 'new'
+    Old:
+        name: 'old'
 
 <Init>:
     BoxLayout:
         orientation: 'vertical'
         spacing: 25
         pos_hint: {'top': 1.375}
+        canvas.before:
+            Color:
+                rgba: [1,1,1,1]
+            Rectangle:
+                size: self.size
+                source: 'Imagens/obra_prima.png'
 
         MDFillRoundFlatButton:
             text: 'Nova Gravação'
@@ -28,7 +36,9 @@
             pos_hint: {'center_x': .5}
             size_hint_x: .50
             _radius: dp(14)
-            on_release: pass
+            on_release:
+                app.root.current = 'old'
+                app.root.transition.direction = 'left'
 
         MDFillRoundFlatButton:
             text: 'Sair'
@@ -39,15 +49,20 @@
 
 
 <New>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.after:
+            Color:
+                rgba: [1,1,1,1]
+            Rectangle:
+                size: self.size
+                source: 'Imagens/obra_prima.png'
     BarStatus:
 
     BoxLayout:
         id: bx_record
         orientation: 'vertical'
         pos_hint: {'center_y': .525}
-
-        Label:
-            id: lb_new
 
         MDFloatingActionButton:
             id: microphone
@@ -57,6 +72,15 @@
             md_bg_color: app.theme_cls.primary_color
             on_press: root.animation_up()
             on_release: root.animation_down()
+
+<Old>:
+    ScrollView:
+        id: scroll
+        BoxLayout:
+            id: bx_sc
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
 
         
 <BarStatus@ActionBar>:

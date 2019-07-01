@@ -7,6 +7,7 @@ __date__ = '06/2019'
 from kivy.config import Config
 Config.set('graphics', 'borderless', True)
 Config.set('kivy', 'exit_on_escape', False)
+Config.set('kivy', 'resizable', True)
 
 
 #KIVY
@@ -24,10 +25,12 @@ from kivy.core.window import Window
 
 #KIVYMD
 from kivymd.theming import ThemeManager
-from kivymd.button import MDFillRoundFlatButton
+from kivymd.button import MDFillRoundFlatButton,\
+                        MDRaisedButton
 
 #OTHERS
-# from pdb import set_trace #DEBUG
+from pdb import set_trace #DEBUG
+from tools_audio import read_info
 
 #VARIABLES
 cor_default = [.776, .157, .157, 1]
@@ -38,17 +41,13 @@ class Main(ScreenManager):
 
 
 class Init(Screen):
-    record = []
     def on_pre_enter(self):
         Window.bind(on_keyboard=self.option)
 
     def option(self, window, key, *args):
-        print(key)
-        
         if key == 27:
             self.sair()
-
-        return True
+            return True
 
     def sair(self, *args, **kw):
         box = BoxLayout(orientation="vertical", padding=10, spacing=10)
@@ -86,10 +85,19 @@ class Init(Screen):
 
 
 class Old(Screen):
-    def olds(self):
-        pass
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.printar_dados()
+
+
+    def printar_dados(self):
+        datas = read_info()
+
+        for item in datas:
+            self.ids.scroll.ids.bx_sc.add_widget(MDRaisedButton(text=item))
 
 class New(Screen):
+
     def animation_up(self):
         change_pos = Animation(pos_hint={'center_y': .505}, d=.3)
         change_size = Animation(size=(dp(70), dp(70)), d=.3, t='linear', pos_hint= {'right': .995})
