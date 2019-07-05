@@ -25,8 +25,8 @@ from kivy.core.window import Window
 
 #KIVYMD
 from kivymd.theming import ThemeManager
-from kivymd.button import MDFillRoundFlatButton,\
-                        MDRaisedButton
+from kivymd.button import MDFillRoundFlatButton
+# from kivymd.label import MDLabel
 
 #OTHERS
 from pdb import set_trace #DEBUG
@@ -34,6 +34,7 @@ from tools_audio import read_info
 
 #VARIABLES
 cor_default = [.776, .157, .157, 1]
+cor_default_2 = [.773, .239, .239, 1]
 
 
 class Main(ScreenManager):
@@ -85,19 +86,21 @@ class Init(Screen):
 
 
 class Old(Screen):
-    def __init__(self, **kw):
-        super().__init__(**kw)
+    def on_enter(self):
+        # self.ids.bx_sc.clear_widgets()
         self.printar_dados()
-
 
     def printar_dados(self):
         datas = read_info()
 
         for item in datas:
-            self.ids.scroll.ids.bx_sc.add_widget(MDRaisedButton(text=item))
+            self.ids.bx_sc.add_widget(MYLabel(text=item, size_hint=[1, None], height=30))
+
+
+class MYLabel(Label):pass
+            
 
 class New(Screen):
-
     def animation_up(self):
         change_pos = Animation(pos_hint={'center_y': .505}, d=.3)
         change_size = Animation(size=(dp(70), dp(70)), d=.3, t='linear', pos_hint= {'right': .995})

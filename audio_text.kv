@@ -1,6 +1,7 @@
 #:import MDFillRoundFlatButton kivymd.button.MDFillRoundFlatButton
 #:import MDTextFieldRect kivymd.textfields.MDTextFieldRect
 #:set cor_default [.776, .157, .157, 1]
+#:set cor_default_2 [.773, .239, .239, 1]
 
 <Main>:
     Init:
@@ -74,13 +75,31 @@
             on_release: root.animation_down()
 
 <Old>:
-    ScrollView:
-        id: scroll
-        BoxLayout:
-            id: bx_sc
-            orientation: 'vertical'
-            size_hint_y: None
-            height: self.minimum_height
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 5
+        canvas.before:
+            Color:
+                rgba: [1,1,1,1]
+            Rectangle:
+                size: self.size
+                source: 'Imagens/obra_prima.png'
+
+        BarStatus:
+
+        ScrollView:
+            id: scroll
+            do_scroll_x: False
+            bar_color: cor_default
+            bar_pos_y: 'left'
+            bar_width: dp(5)
+            scroll_type: ['bars', 'content']
+            BoxLayout:
+                id: bx_sc
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 5     
 
         
 <BarStatus@ActionBar>:
