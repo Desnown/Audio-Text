@@ -95,9 +95,6 @@ class Old(Screen):
 
         for item in datas:
             self.ids.bx_sc.add_widget(MYLabel(text=item, size_hint=[1, None], height=30))
-
-
-class MYLabel(Label):pass
             
 
 class New(Screen):

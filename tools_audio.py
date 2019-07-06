@@ -19,9 +19,7 @@ def speek():
             print("Você disse: ", speech)
 
 
-speek()
-
-    
+# speek()
                 
 
 def hoje():
