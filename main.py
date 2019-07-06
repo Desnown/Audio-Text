@@ -94,21 +94,21 @@ class Old(Screen):
         datas = read_info()
 
         for item in datas:
-            self.ids.bx_sc.add_widget(MYLabel(text=item, size_hint=[1, None], height=30))
+            self.ids.bx_sc.add_widget(Label(text=item, size_hint=[1, None], height=30))
             
 
 class New(Screen):
     def animation_up(self):
-        change_pos = Animation(pos_hint={'center_y': .505}, d=.3)
-        change_size = Animation(size=(dp(70), dp(70)), d=.3, t='linear', pos_hint= {'right': .995})
+        change_pos = Animation(pos_hint={'center_y': .5}, d=.3)
+        change_size = Animation(size=(dp(100), dp(100)), d=.3, t='in_out_expo', pos_hint= {'right': 1}, font_size=dp(50))
 
         change_pos.start(self.ids.bx_record)
         change_size.start(self.ids.microphone)
 
 
     def animation_down(self):
-        change_pos = Animation(pos_hint={'center_y': .525}, d=.3)
-        change_size = Animation(size=(dp(50), dp(50)),t='linear',  d=.3, pos_hint={'right': .975})
+        change_pos = Animation(pos_hint={'center_y': .525}, d=.2)
+        change_size = Animation(size=(dp(50), dp(50)),t='in_out_expo',  d=.3, pos_hint={'right': .975}, font_size=(30))
 
         change_pos.start(self.ids.bx_record)
         change_size.start(self.ids.microphone)

@@ -6,9 +6,10 @@ a tradução tradução para texto
 '''
 
 from os import sep
-import speech_recognition as sr
+
 
 def speek():
+    import speech_recognition as sr
     r = sr.Recognizer()
     with sr.Microphone() as s:
         r.adjust_for_ambient_noise(s)
@@ -16,7 +17,7 @@ def speek():
             audio = r.listen(s)
 
             speech = r.recognize_google(audio, language='pt')
-            print("Você disse: ", speech)
+            print(speech)
 
 
 # speek()
