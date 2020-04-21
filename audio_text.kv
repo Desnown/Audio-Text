@@ -1,5 +1,6 @@
 #:import MDFillRoundFlatButton kivymd.button.MDFillRoundFlatButton
 #:import MDTextFieldRect kivymd.textfields.MDTextFieldRect
+#:import toast kivymd.toast.toast
 #:set cor_default [.776, .157, .157, 1]
 #:set cor_default_2 [.773, .239, .239, 1]
 
@@ -26,7 +27,7 @@
         MDFillRoundFlatButton:
             text: 'Nova Gravação'
             pos_hint: {'center_x': .5}
-            size_hint_x: .50
+            size_hint_x: .35
             _radius: dp(14)
             on_release:
                 app.root.current = 'new'
@@ -35,7 +36,7 @@
         MDFillRoundFlatButton:
             text: 'Gravações Anteriores'
             pos_hint: {'center_x': .5}
-            size_hint_x: .50
+            size_hint_x: .35
             _radius: dp(14)
             on_release:
                 app.root.current = 'old'
@@ -44,7 +45,7 @@
         MDFillRoundFlatButton:
             text: 'Sair'
             pos_hint: {'center_x': .5}
-            size_hint_x: .50
+            size_hint_x: .35
             _radius: dp(14)
             on_release: root.sair()
 
@@ -71,8 +72,12 @@
             pos_hint: {'right': .975}
             size: dp(50), dp(50)
             md_bg_color: app.theme_cls.primary_color
-            on_press: root.animation_up()
-            on_release: root.animation_down()
+
+            on_press:
+                root.animation_up()
+            on_release:
+                toast("Ainda irá ser implementado!!!")
+                root.animation_down()
 
 <Old>:
     BoxLayout:
@@ -94,21 +99,22 @@
             bar_pos_y: 'left'
             bar_width: dp(5)
             scroll_type: ['bars', 'content']
+            bar_inactive_color: cor_default_2
             BoxLayout:
                 id: bx_sc
                 orientation: 'vertical'
                 size_hint_y: None
                 height: self.minimum_height
-                spacing: 5     
+                spacing: 5
 
-        
 <BarStatus@ActionBar>:
     pos_hint: {'top':1}
     background_image: ''
     background_color: cor_default
     ActionView:
         ActionPrevious:
-            app_icon: 'Imagens/traco.png'
+            app_icon: ''
+            title: 'Voltar'
             on_release:
                 app.root.current = 'init'
                 app.root.transition.direction = 'right'
